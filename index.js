@@ -1,5 +1,18 @@
 const Discord = require("discord.js");
+const fetch = require("node-fetch");
 const client = new Discord.Client();
+
+
+function getQuote() {
+  return fetch("https://zenquotes.io/api/random")
+    .then(res => {
+      return res.json();
+    })
+    .then(data => {
+      return `${data[0]["q"]} -${data[0]["a"]}`
+    })
+}
+
 
 client.on("ready", () => {
   console.log(`logged in ${client.user.tag}`);
@@ -11,6 +24,11 @@ client.on("message", msg => {
         case '?RST':
             resetBot(msg.channel);
             break;
+  }
+  if(msg.content === "$inspire") {
+    getQuote().then(res => {
+      msg.reply(res);
+    })
   }
 });
 
