@@ -1,18 +1,18 @@
 const Discord = require("discord.js");
-const fetch = require("node-fetch");
 const client = new Discord.Client();
 const axios = require("axios");
 require("dotenv").config();
 const user = JSON.parse(process.env.JSON);
 
 function getQuote() {
-  return fetch("https://zenquotes.io/api/random")
-    .then(res => {
-      return res.json();
-    })
-    .then(data => {
-      return `${data[0]["q"]} -${data[0]["a"]}`
-    })
+  
+  return axios.get('https://zenquotes.io/api/random')
+              .then(res => {
+                return `${res.data[0]["q"]} -${res.data[0]["a"]}`;
+              })
+              .catch(error => {
+                console.log(error.message)
+              })
 }
 
 function zBotAnswer(question) {
@@ -28,19 +28,18 @@ function zBotAnswer(question) {
   let encodedUrl = convertToEncodedUrl(body);
 
   return axios.get(`${baseUrl}${encodedUrl}`)
-    .then(res => {
-      console.log(res.data)
-      return res.data;
-    }).catch(error => {
-      console.log(error.message)
-      return "Sorry can't answer that";
-    })
-
+              .then(res => {
+                console.log(res.data)
+                return res.data;
+              })
+              .catch(error => {
+                console.log(error.message)
+                return "Sorry can't answer that";
+              })
 }
 
 client.on("ready", () => {
   console.log(`logged in ${client.user.username}`);
-  console.log(user[0].USERNAME)
 });
 
 client.on("message", msg => {
