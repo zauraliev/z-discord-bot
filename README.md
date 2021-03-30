@@ -9,11 +9,11 @@
 ### Quotes API for ($inspire)
 See [https://zenquotes.io/api](https://zenquotes.io/api).
 
-<img src="img/$inspire.JPG" width="500">
+<img src="img/$inspire.png" width="500">
 
 
 
 ### Wolfram API for (Bot's short answers)
 See [https://products.wolframalpha.com/api/](https://products.wolframalpha.com/api/).
 
-<img src="img/short-answer.JPG" width="500">
+<img src="img/short-answer.png" width="500">
