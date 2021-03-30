@@ -1,7 +1,7 @@
 {
   "name": "z-discord-bot",
   "version": "1.0.0",
-  "description": "",
+  "description": "Z-Bot is a Discord bot which will inspire users and answer simple user questions.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
