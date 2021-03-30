@@ -2,7 +2,7 @@
 <img src="img/cookie_monster.png" width="75" height="75">
 
 ### Z-Bot for Discord Channel
-See [Add Z-Bot into your Discord Channel](https://discord.com/oauth2/authorize?client_id=825903337274081310&scope=bot).
+[Add Z-Bot into your Discord Channel](https://discord.com/oauth2/authorize?client_id=825903337274081310&scope=bot).
 
 
 
