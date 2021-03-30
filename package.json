@@ -12,6 +12,10 @@
   "dependencies": {
     "discord": "^0.8.2",
     "discord.js": "^12.5.1",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.1",
+    "wolfram-alpha-api": "^0.2.1"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0"
   }
 }
