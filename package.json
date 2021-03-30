@@ -10,10 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
     "discord": "^0.8.2",
     "discord.js": "^12.5.1",
-    "node-fetch": "^2.6.1",
-    "wolfram-alpha-api": "^0.2.1"
+    "node-ddg-api": "^0.1.4",
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "dotenv": "^8.2.0"
