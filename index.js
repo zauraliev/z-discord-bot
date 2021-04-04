@@ -1,5 +1,10 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
+
+const Database = require("@replit/database");
+const db = new Database();
+
+
 const axios = require("axios");
 require("dotenv").config();
 const user = JSON.parse(process.env.JSON);
