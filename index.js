@@ -5,6 +5,14 @@ const axios = require("axios");
 require("dotenv").config();
 const user = JSON.parse(process.env.JSON);
 
+const sadWords = ["sad", "depressed", "unhappy", "angry"];
+
+const motivations = [
+  "Cheer up!",
+  "Be motivated!",
+  "Hang in there!"
+];
+
 function getQuote() {
   
   return axios.get('https://zenquotes.io/api/random')
@@ -47,6 +55,11 @@ client.on("message", msg => {
   const userRegex = /\<[@!].*?\>/g;
 
   if (msg.content === 'ping') msg.reply('pong');
+
+  if (sadWords.some(word => msg.content.includes(word))) {
+    const motivation = motivations[Math.floor(Math.random() * motivations.length)];
+    msg.reply(motivation);
+  }
   
   if (msg.mentions.has(client.user)) {
     
