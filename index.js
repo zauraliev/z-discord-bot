@@ -1,12 +1,15 @@
 const Discord = require("discord.js");
 const Database = require("@replit/database")
+require("dotenv").config();
 
+const { getMotivations, updateMotivation, deleteMotivation } = require("./services")
 
 const client = new Discord.Client();
+
 const db = new Database()
 
 const axios = require("axios");
-require("dotenv").config();
+
 const user = JSON.parse(process.env.JSON);
 
 const sadWords = ["sad", "depressed", "unhappy", "angry"];
@@ -17,41 +20,7 @@ const initMotivations = [
   "Hang in there!"
 ];
 
-db.get("motivations").then(motivations => {
-  if(!motivations || motivations.length < 1){
-    db.set("motivations", initMotivations);
-    console.log(motivations)
-  }
-  console.log(motivations)
-})
-
-
-function updateMotivation(motivationMSG) {
-  db.get("motivations").then(motivations =>{
-    motivations.push(motivationMSG);
-    db.set("motivations", motivations)
-      .then(() => {
-        db.get("motivations").then(motivations => {
-          console.log(motivations)
-        })
-      })
-  })
-}
-
-function deleteMotivation(index) {
-  db.get("motivations").then(motivations => {
-    if(motivations.length > index) {
-      motivations.splice(index, 1)
-      db.set("motivations", motivations)
-        .then(() => {
-          db.get("motivations").then(motivations => {
-            console.log(motivations)
-          })
-        })
-    }
-  })
-}
-
+getMotivations(initMotivations);
 
 function getQuote() {
   

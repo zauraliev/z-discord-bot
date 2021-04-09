@@ -1,12 +1,44 @@
 const Database = require("@replit/database");
 const db = new Database();
 
-const addInspire = inspire => {
-  // Add inspire into DB
-  console.log(inspire);
+const getMotivations = initMotivations => {
+  db.get("motivations").then(motivations => {
+    if(!motivations || motivations.length < 1){
+      db.set("motivations", initMotivations);
+      console.log(motivations)
+    }
+    console.log(">>>", motivations)
+  })
 }
 
-const deleteInspire = inspireId => {
-  // Delete inspire by id from DB
-  console.log(inspireId);
+const updateMotivation = motivationMSG => {
+  db.get("motivations").then(motivations =>{
+    motivations.push(motivationMSG);
+    db.set("motivations", motivations)
+      .then(() => {
+        db.get("motivations").then(motivations => {
+          console.log(motivations)
+        })
+      })
+  })
+}
+
+const deleteMotivation = index => {
+  db.get("motivations").then(motivations => {
+    if(motivations.length > index) {
+      motivations.splice(index, 1)
+      db.set("motivations", motivations)
+        .then(() => {
+          db.get("motivations").then(motivations => {
+            console.log(motivations)
+          })
+        })
+    }
+  })
+}
+
+module.exports = {
+  getMotivations: getMotivations,
+  updateMotivation: updateMotivation,
+  deleteMotivation: deleteMotivation
 }
