@@ -101,7 +101,7 @@ client.on("message", msg => {
 
   if (msg.content.startsWith("$respond")) {
     let val = msg.content.split("$respond ")[1];
-    val = val === undefined ? "false" : val;
+    val = !val ? "false" : val;
     
     if (val.toLowerCase() === "true") {
       db.set("respond", true)
