@@ -1,8 +1,10 @@
 const Discord = require("discord.js");
-const Database = require("@replit/database")
+const Database = require("@replit/database");
 require("dotenv").config();
 
-const { getMotivations, updateMotivation, deleteMotivation } = require("./services")
+const { keepAlive } = require("./server.js");
+
+const { getMotivations, updateMotivation, deleteMotivation } = require("./services");
 
 const client = new Discord.Client();
 
@@ -90,7 +92,7 @@ client.on("message", msg => {
   if(msg.content.startsWith("$del")) {
     index = msg.content.split("$del ")[1];
     deleteMotivation(index);
-    msg.channel.send("New motivational message deleted...");
+    msg.channel.send("Motivational message deleted...");
   }
 
   if(msg.content.startsWith("$listz")) {
@@ -141,6 +143,8 @@ client.on("message", msg => {
     });
   }
 });
+
+keepAlive();
 
 client.login(process.env.TOKEN)
 
