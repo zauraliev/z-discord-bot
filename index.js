@@ -20,6 +20,13 @@ const initMotivations = [
   "Hang in there!"
 ];
 
+// Initializing the Responding of Z-Bot.
+db.get("respond").then(respond => {
+  if (respond === null) {
+    db.set("respond", true);
+  }
+});
+
 getMotivations(initMotivations);
 
 function getQuote() {
@@ -47,11 +54,11 @@ function zBotAnswer(question) {
 
   return axios.get(`${baseUrl}${encodedUrl}`)
               .then(res => {
-                console.log(res.data)
+                console.log(res.data);
                 return res.data;
               })
               .catch(error => {
-                console.log(error.message)
+                console.log(error.message);
                 return "Sorry can't answer that";
               })
 }
@@ -65,23 +72,42 @@ client.on("message", msg => {
 
   if (msg.content === 'ping') msg.reply('pong');
 
-  if (sadWords.some(word => msg.content.includes(word))) {
-    db.get("motivations").then(motivations => {
-      const motivation = motivations[Math.floor(Math.random() * motivations.length)];
-      msg.reply(motivation);
-    })
-  }
+  db.get("respond").then(respond => {
+    if (respond && sadWords.some(word => msg.content.includes(word))) {
+      db.get("motivations").then(motivations => {
+        const motivation = motivations[Math.floor(Math.random() * motivations.length)];
+        msg.reply(motivation);
+      })
+    }
+  });
 
   if(msg.content.startsWith("$new")) {
     motivationMSG = msg.content.split("$new ")[1];
     updateMotivation(motivationMSG);
-    msg.channel.send("New motivational message added...")
+    msg.channel.send("New motivational message added...");
   }
 
   if(msg.content.startsWith("$del")) {
     index = msg.content.split("$del ")[1];
     deleteMotivation(index);
-    msg.channel.send("New motivational message deleted...")
+    msg.channel.send("New motivational message deleted...");
+  }
+
+  if(msg.content.startsWith("$listz")) {
+    db.get("motivations").then(motivations => {
+      msg.channel.send(motivations);
+    });
+  }
+
+  if (msg.content.startsWith("$respond")) {
+    val = msg.content.split("$respond ")[1];
+    if (val.toLowerCase() === "true") {
+      db.set("respond", true)
+      msg.channel.send("Responding is on.");
+    } else {
+      db.set("respond", false);
+      msg.channel.send("Responding is off.");
+    }
   }
   
   if (msg.mentions.has(client.user)) {
@@ -110,7 +136,7 @@ client.on("message", msg => {
   if(msg.content === '$inspire') {
     getQuote().then(res => {
       msg.reply(res);
-    })
+    });
   }
 });
 

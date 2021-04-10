@@ -3,12 +3,12 @@ const db = new Database();
 
 const getMotivations = initMotivations => {
   db.get("motivations").then(motivations => {
-    if(!motivations || motivations.length < 1){
+    if (!motivations || motivations.length < 1) {
       db.set("motivations", initMotivations);
-      console.log(motivations)
+      console.log(motivations);
     }
-    console.log(">>>", motivations)
-  })
+    console.log(">>>", motivations);
+  });
 }
 
 const updateMotivation = motivationMSG => {
@@ -17,7 +17,7 @@ const updateMotivation = motivationMSG => {
     db.set("motivations", motivations)
       .then(() => {
         db.get("motivations").then(motivations => {
-          console.log(motivations)
+          console.log(motivations);
         })
       })
   })
@@ -26,11 +26,11 @@ const updateMotivation = motivationMSG => {
 const deleteMotivation = index => {
   db.get("motivations").then(motivations => {
     if(motivations.length > index) {
-      motivations.splice(index, 1)
+      motivations.splice(index, 1);
       db.set("motivations", motivations)
         .then(() => {
           db.get("motivations").then(motivations => {
-            console.log(motivations)
+            console.log(motivations);
           })
         })
     }
