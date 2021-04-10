@@ -101,7 +101,7 @@ client.on("message", msg => {
 
   if (msg.content.startsWith("$respond")) {
     val = msg.content.split("$respond ")[1];
-    if (val.toLowerCase() === "true") {
+    if (val?.toLowerCase() === "true") {
       db.set("respond", true)
       msg.channel.send("Responding is on.");
     } else {
