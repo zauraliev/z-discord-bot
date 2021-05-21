@@ -14,12 +14,21 @@ const axios = require("axios");
 
 const user = JSON.parse(process.env.JSON);
 
-const sadWords = ["sad", "depressed", "unhappy", "angry"];
+const sadWords = ["sad",
+                  "depressed", 
+                  "unhappy", 
+                  "angry",
+                  "exhausted",
+                  "aggrevated",
+                  "irritable",
+                  "hopeless"];
 
 const initMotivations = [
   "Cheer up!",
   "Be motivated!",
-  "Hang in there!"
+  "Hang in there!",
+  "Don't give up!",
+  "Believe in yourself!"
 ];
 
 // Initializing the Responding of Z-Bot.
