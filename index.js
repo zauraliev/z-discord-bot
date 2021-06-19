@@ -21,14 +21,19 @@ const sadWords = ["sad",
                   "exhausted",
                   "aggrevated",
                   "irritable",
-                  "hopeless"];
+                  "hopeless",
+                  "bored",
+                  "down",
+                  "low",
+                  "bitter",];
 
 const initMotivations = [
   "Cheer up!",
   "Be motivated!",
   "Hang in there!",
   "Don't give up!",
-  "Believe in yourself!"
+  "Believe in yourself!",
+  "You're strong!"
 ];
 
 // Initializing the Responding of Z-Bot.
